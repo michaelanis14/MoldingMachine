@@ -7,7 +7,6 @@
     <EventInputs>
       <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
         <With Var="MouldAreaFree"/>
-        <With Var="EnableMovement"/>
       </Event>
     </EventInputs>
     <EventOutputs>
@@ -19,7 +18,6 @@
     </EventOutputs>
     <InputVars>
       <VarDeclaration Comment="" InitialValue="FALSE" Name="MouldAreaFree" Type="BOOL"/>
-      <VarDeclaration Comment="" InitialValue="FALSE" Name="EnableMovement" Type="BOOL"/>
     </InputVars>
     <OutputVars>
       <VarDeclaration Comment="Output event qualifier" InitialValue="FALSE" Name="STATE" Type="STRING"/>
@@ -42,7 +40,9 @@
       <ECState Comment="" Name="Molding" x="2900.0" y="300.0">
         <ECAction Algorithm="Molding" Output="CNF"/>
       </ECState>
-      <ECState Comment="" Name="Closing" x="1800.0" y="1000.0"/>
+      <ECState Comment="" Name="Closing" x="1800.0" y="1000.0">
+        <ECAction Algorithm="Closing" Output="CNF"/>
+      </ECState>
       <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Opening" Source="Molding" x="3950.0" y="635.0"/>
       <ECTransition Comment="" Condition="REQ[MouldAreaFree &lt;&gt; TRUE]" Destination="Robot" Source="Opening" x="3965.0" y="1705.0"/>
       <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Molding" Source="Closing" x="2285.0" y="590.0"/>
@@ -50,16 +50,16 @@
       <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Closing" Source="Robot" x="2130.0" y="1590.0"/>
     </ECC>
     <Algorithm Comment="new algorithm" Name="Molding">
-      <ST Text="&#10;s1:=true;&#10;s2:=False;&#10;s3:=False;&#10;&#10;"/>
+      <ST Text="STATE:=&quot;Molding&quot;;&#10;InPosition_1:=TRUE;&#10;InPosition_2:=FALSE;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Opening">
-      <ST Text="s1:=False;&#10;s2:=true;&#10;s3:=False;"/>
+      <ST Text="STATE:=&quot;Opening Completed&quot;;&#10;InPosition_1:=FALSE;&#10;InPosition_2:=TRUE;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Robot">
-      <ST Text="s1:=False;&#10;s2:=False;&#10;s3:=true;&#10;"/>
+      <ST Text="STATE:=&quot;Robot Enters&quot;;&#10;InPosition_1:=FALSE;&#10;InPosition_2:=TRUE;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Closing">
-      <ST Text="STATE:=&quot;Closing Completed&quot;;&#10;InPosistion_1:="/>
+      <ST Text="STATE:=&quot;Closing Completed&quot;;&#10;InPosition_1:=TRUE;&#10;InPosition_2:=FALSE;"/>
     </Algorithm>
   </BasicFB>
 </FBType>
