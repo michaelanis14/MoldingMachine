@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Template for a simple Basic Function Block Type" Name="BasicTest">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="michael" Date="2019-04-02" Version="1.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event"/>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
+        <With Var="STATE"/>
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Comment="Output event qualifier" Name="STATE" Type="BOOL"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="500.0" y="1100.0"/>
+      <ECState Comment="" Name="On" x="2000.0" y="300.0">
+        <ECAction Algorithm="turnOn" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Off" x="2100.0" y="1700.0">
+        <ECAction Algorithm="turnOff" Output="CNF"/>
+      </ECState>
+      <ECTransition Comment="" Condition="REQ" Destination="On" Source="START" x="1310.0" y="965.0"/>
+      <ECTransition Comment="" Condition="REQ" Destination="Off" Source="On" x="2155.0" y="1060.0"/>
+      <ECTransition Comment="" Condition="REQ" Destination="On" Source="Off" x="1635.0" y="1050.0"/>
+    </ECC>
+    <Algorithm Comment="new algorithm" Name="turnOn">
+      <ST Text="STATE := TRUE;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="turnOff">
+      <ST Text="STATE:=FALSE;"/>
+    </Algorithm>
+  </BasicFB>
+</FBType>

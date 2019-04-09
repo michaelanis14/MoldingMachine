@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<FBType Comment="Template for a simple Basic Function Block Type" Name="MoldingMachine">
+  <Identification Standard="61499-2"/>
+  <VersionInfo Author="michael" Date="2019-03-27" Version="1.0"/>
+  <InterfaceList>
+    <EventInputs>
+      <Event Comment="Normal Execution Request" Name="REQ" Type="Event">
+        <With Var="MouldAreaFree"/>
+        <With Var="EnableMovement"/>
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
+        <With Var="STATE"/>
+        <With Var="InPosition_1"/>
+        <With Var="InPosition_2"/>
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Comment="" InitialValue="FALSE" Name="MouldAreaFree" Type="BOOL"/>
+      <VarDeclaration Comment="" InitialValue="FALSE" Name="EnableMovement" Type="BOOL"/>
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Comment="Output event qualifier" InitialValue="FALSE" Name="STATE" Type="STRING"/>
+      <VarDeclaration Comment="" InitialValue="FALSE" Name="InPosition_1" Type="BOOL"/>
+      <VarDeclaration Comment="" InitialValue="FALSE" Name="InPosition_2" Type="BOOL"/>
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Comment="Internal Variable" InitialValue="" Name="LOGIC" Type="BOOL"/>
+    </InternalVars>
+    <ECC>
+      <ECState Comment="Initial State" Name="START" x="200.0" y="1100.0"/>
+      <ECState Comment="" Name="Robot" x="2900.0" y="2000.0">
+        <ECAction Algorithm="Robot" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Opening" x="4000.0" y="1000.0">
+        <ECAction Algorithm="Opening" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Molding" x="2900.0" y="300.0">
+        <ECAction Algorithm="Molding" Output="CNF"/>
+      </ECState>
+      <ECState Comment="" Name="Closing" x="1800.0" y="1000.0"/>
+      <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Opening" Source="Molding" x="3950.0" y="635.0"/>
+      <ECTransition Comment="" Condition="REQ[MouldAreaFree &lt;&gt; TRUE]" Destination="Robot" Source="Opening" x="3965.0" y="1705.0"/>
+      <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Molding" Source="Closing" x="2285.0" y="590.0"/>
+      <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Closing" Source="START" x="1435.0" y="1045.0"/>
+      <ECTransition Comment="" Condition="REQ[MouldAreaFree]" Destination="Closing" Source="Robot" x="2130.0" y="1590.0"/>
+    </ECC>
+    <Algorithm Comment="new algorithm" Name="Molding">
+      <ST Text="&#10;s1:=true;&#10;s2:=False;&#10;s3:=False;&#10;&#10;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="Opening">
+      <ST Text="s1:=False;&#10;s2:=true;&#10;s3:=False;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="Robot">
+      <ST Text="s1:=False;&#10;s2:=False;&#10;s3:=true;&#10;"/>
+    </Algorithm>
+    <Algorithm Comment="new algorithm" Name="Closing">
+      <ST Text="STATE:=&quot;Closing Completed&quot;;&#10;InPosistion_1:="/>
+    </Algorithm>
+  </BasicFB>
+</FBType>

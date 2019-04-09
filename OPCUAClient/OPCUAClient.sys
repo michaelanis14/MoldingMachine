@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd">
+<System Comment="" Name="OPCUAClient">
+  <VersionInfo Author="Author" Organization="Eclipse 4diac" Version="1.0"/>
+  <Application Comment="" Name="OPCUAClientApp">
+    <SubAppNetwork>
+      <FB Comment="" Name="MoldArea" Type="BOOL2BOOL" x="2700.0" y="200.0"/>
+      <FB Comment="" Name="AxisMove" Type="BOOL2BOOL" x="2600.0" y="1900.0"/>
+      <FB Comment="" Name="E_RESTART" Type="E_RESTART" x="450.0" y="650.0"/>
+      <FB Comment="" Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" x="1500.0" y="100.0">
+        <Parameter Name="QI" Value="1"/>
+        <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+      </FB>
+      <FB Comment="" Name="SUBSCRIBE_1_1" Type="SUBSCRIBE_1" x="1500.0" y="1300.0">
+        <Parameter Name="QI" Value="1"/>
+        <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+      </FB>
+      <FB Comment="" Name="PUBLISH_3" Type="PUBLISH_3" x="6100.0" y="0.0">
+        <Parameter Name="QI" Value="1"/>
+        <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+      </FB>
+      <FB Comment="" Name="Modling" Type="MoldingMachine" x="4700.0" y="1400.0">
+        <Parameter Name="MOLD_AREA" Value="FALSE"/>
+        <Parameter Name="AXIS_MOVE" Value="FALSE"/>
+      </FB>
+      <DataConnections>
+        <Connection Comment="" Destination="MoldArea.IN" Source="SUBSCRIBE_1.RD_1" dx1="320.0"/>
+        <Connection Comment="" Destination="AxisMove.IN" Source="SUBSCRIBE_1_1.RD_1" dx1="320.0"/>
+        <Connection Comment="" Destination="Modling.MOLD_AREA" Source="MoldArea.OUT" dx1="585.0"/>
+        <Connection Comment="" Destination="Modling.AXIS_MOVE" Source="AxisMove.OUT" dx1="595.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="Modling.s1" dx1="335.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="Modling.s2" dx1="335.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="Modling.s3" dx1="335.0"/>
+      </DataConnections>
+      <EventConnections>
+        <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.WARM" dx1="135.0"/>
+        <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.COLD" dx1="235.0"/>
+        <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART.WARM" dx1="235.0"/>
+        <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART.COLD" dx1="235.0"/>
+        <Connection Comment="" Destination="MoldArea.REQ" Source="SUBSCRIBE_1.IND" dx1="320.0"/>
+        <Connection Comment="" Destination="AxisMove.REQ" Source="SUBSCRIBE_1_1.IND" dx1="320.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.COLD" dx1="2600.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.WARM" dx1="2600.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="MoldArea.CNF" dx1="585.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="AxisMove.CNF" dx1="785.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD" dx1="1885.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM" dx1="1885.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.INIT" Source="Modling.CNF" dx1="335.0"/>
+      </EventConnections>
+    </SubAppNetwork>
+  </Application>
+  <Device Comment="" Name="FORTE_PC" Type="FORTE_PC" x="2180.0" y="990.0">
+    <Parameter Name="MGR_ID" Value="&quot;localhost:61499&quot;"/>
+    <Attribute Comment="device profile" Name="Profile" Type="STRING" Value="HOLOBLOC"/>
+    <Attribute Comment="color" Name="Color" Type="STRING" Value="206,190,101"/>
+    <Resource Comment="" Name="EMB_RES" Type="EMB_RES" x="0.0" y="0.0">
+      <FBNetwork>
+        <FB Comment="" Name="E_RESTART" Type="E_RESTART" x="450.0" y="650.0"/>
+        <FB Comment="" Name="AxisMove" Type="BOOL2BOOL" x="2700.0" y="1400.0"/>
+        <FB Comment="" Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" x="1500.0" y="100.0">
+          <Parameter Name="QI" Value="1"/>
+          <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+        </FB>
+        <FB Comment="" Name="SUBSCRIBE_1_1" Type="SUBSCRIBE_1" x="1500.0" y="1300.0">
+          <Parameter Name="QI" Value="1"/>
+          <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+        </FB>
+        <FB Comment="" Name="MoldArea" Type="BOOL2BOOL" x="2700.0" y="200.0"/>
+        <FB Comment="" Name="PUBLISH_3" Type="PUBLISH_3" x="6130.0" y="545.0">
+          <Parameter Name="QI" Value="1"/>
+          <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
+        </FB>
+        <FB Comment="" Name="Modling" Type="MoldingMachine" x="4700.0" y="1400.0">
+          <Parameter Name="MOLD_AREA" Value="FALSE"/>
+          <Parameter Name="AXIS_MOVE" Value="FALSE"/>
+        </FB>
+        <DataConnections>
+          <Connection Comment="" Destination="AxisMove.IN" Source="SUBSCRIBE_1_1.RD_1"/>
+          <Connection Comment="" Destination="MoldArea.IN" Source="SUBSCRIBE_1.RD_1"/>
+          <Connection Comment="" Destination="Modling.MOLD_AREA" Source="MoldArea.OUT"/>
+          <Connection Comment="" Destination="Modling.AXIS_MOVE" Source="AxisMove.OUT"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="Modling.s1"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="Modling.s2"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="Modling.s3"/>
+        </DataConnections>
+        <EventConnections>
+          <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.WARM"/>
+          <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.COLD"/>
+          <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART.WARM"/>
+          <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART.COLD"/>
+          <Connection Comment="" Destination="AxisMove.REQ" Source="SUBSCRIBE_1_1.IND"/>
+          <Connection Comment="" Destination="MoldArea.REQ" Source="SUBSCRIBE_1.IND"/>
+          <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.COLD"/>
+          <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.WARM"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="MoldArea.CNF"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="AxisMove.CNF"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM"/>
+          <Connection Comment="" Destination="PUBLISH_3.INIT" Source="Modling.CNF"/>
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Mapping From="OPCUAClientApp.E_RESTART" To="FORTE_PC.EMB_RES.E_RESTART"/>
+  <Mapping From="OPCUAClientApp.AxisMove" To="FORTE_PC.EMB_RES.AxisMove"/>
+  <Mapping From="OPCUAClientApp.SUBSCRIBE_1" To="FORTE_PC.EMB_RES.SUBSCRIBE_1"/>
+  <Mapping From="OPCUAClientApp.SUBSCRIBE_1_1" To="FORTE_PC.EMB_RES.SUBSCRIBE_1_1"/>
+  <Mapping From="OPCUAClientApp.MoldArea" To="FORTE_PC.EMB_RES.MoldArea"/>
+  <Mapping From="OPCUAClientApp.PUBLISH_3" To="FORTE_PC.EMB_RES.PUBLISH_3"/>
+  <Mapping From="OPCUAClientApp.Modling" To="FORTE_PC.EMB_RES.Modling"/>
+  <Segment Comment="" Name="Ethernet" Type="Ethernet" dx1="1500.0" x="3865.0" y="645.0">
+    <Attribute Comment="color" Name="Color" Type="STRING" Value="166,116,205"/>
+  </Segment>
+  <Link CommResource="FORTE_PC" Comment="" SegmentName="Ethernet"/>
+</System>
