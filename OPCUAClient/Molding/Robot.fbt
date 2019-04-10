@@ -14,6 +14,7 @@
       <Event Comment="Execution Confirmation" Name="CNF" Type="Event">
         <With Var="MouldAreaFree"/>
         <With Var="EnableMovement"/>
+        <With Var="STATE"/>
       </Event>
     </EventOutputs>
     <InputVars>
