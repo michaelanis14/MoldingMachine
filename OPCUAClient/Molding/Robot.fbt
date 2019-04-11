@@ -50,8 +50,9 @@
       <ECTransition Comment="" Condition="REQ[InPosition_2]" Destination="Move_In" Source="Release" x="1890.0" y="765.0"/>
       <ECTransition Comment="" Condition="REQ[InPosition_2]" Destination="Release" Source="Move_Out" x="1925.0" y="1180.0"/>
       <ECTransition Comment="" Condition="REQ[InPosition_2&lt;&gt;TRUE]" Destination="Ready" Source="Release" x="1370.0" y="710.0"/>
-      <ECTransition Comment="" Condition="REQ[InPosition_2]" Destination="Move_In" Source="Ready" x="1650.0" y="470.0"/>
+      <ECTransition Comment="" Condition="REQ[InPosition_2]" Destination="Move_In" Source="Ready" x="1930.0" y="-5.0"/>
       <ECTransition Comment="" Condition="1" Destination="Ready" Source="Start" x="805.0" y="715.0"/>
+      <ECTransition Comment="" Condition="REQ[InPosition_2&lt;&gt;TRUE]" Destination="Ready" Source="Ready" x="825.0" y="-150.0"/>
     </ECC>
     <Algorithm Comment="new algorithm" Name="Move_In_ALG">
       <ST Text="STATE:=&quot;MOVE_IN&quot;;&#10;MouldAreaFree:=FALSE;&#10;EnableMovement:=1;&#10;"/>

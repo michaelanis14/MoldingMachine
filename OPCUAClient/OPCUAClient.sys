@@ -6,7 +6,7 @@
     <SubAppNetwork>
       <FB Comment="" Name="MoldAreaFree" Type="BOOL2BOOL" x="2700.0" y="200.0"/>
       <FB Comment="" Name="E_RESTART" Type="E_RESTART" x="400.0" y="300.0"/>
-      <FB Comment="" Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" x="1500.0" y="100.0">
+      <FB Comment="" Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" x="1700.0" y="-800.0">
         <Parameter Name="QI" Value="1"/>
         <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
       </FB>
@@ -39,6 +39,7 @@
       <FB Comment="" Name="State" Type="STRING2STRING" x="5800.0" y="2700.0"/>
       <FB Comment="" Name="Robot" Type="Robot" x="3700.0" y="2000.0"/>
       <FB Comment="" Name="E_RESTART_1" Type="E_RESTART" x="160.0" y="1595.0"/>
+      <FB Comment="" Name="CLIENT_1" Type="CLIENT_1" x="1600.0" y="200.0"/>
       <DataConnections>
         <Connection Comment="" Destination="MoldAreaFree.IN" Source="SUBSCRIBE_1.RD_1" dx1="320.0"/>
         <Connection Comment="" Destination="InPosition_1.IN" Source="SUBSCRIBE_1_1.RD_1" dx1="85.0"/>
@@ -89,6 +90,8 @@
         <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART_1.WARM" dx1="330.0"/>
         <Connection Comment="" Destination="SUBSCRIBE_1_2.INIT" Source="E_RESTART_1.WARM" dx1="330.0"/>
         <Connection Comment="" Destination="PUBLISH_3_1.INIT" Source="E_RESTART_1.WARM" dx1="3380.0"/>
+        <Connection Comment="" Destination="CLIENT_1.INIT" Source="E_RESTART.COLD" dx1="360.0"/>
+        <Connection Comment="" Destination="CLIENT_1.INIT" Source="E_RESTART.WARM" dx1="360.0"/>
       </EventConnections>
     </SubAppNetwork>
   </Application>
