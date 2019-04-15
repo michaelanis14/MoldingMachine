@@ -58,6 +58,7 @@
         <Connection Comment="" Destination="PUBLISH_3_1.SD_2" Source="MouldAreaFree.OUT" dx1="535.0"/>
         <Connection Comment="" Destination="PUBLISH_3_1.SD_3" Source="EnableMovement.OUT" dx1="535.0"/>
         <Connection Comment="" Destination="PUBLISH_3_1.SD_1" Source="State.OUT" dx1="525.0"/>
+        <Connection Comment="" Destination="SUBSCRIBE_1_1.ID" Source="CLIENT_1.RD_1" dx1="60.0" dx2="60.0" dy="555.0"/>
       </DataConnections>
       <EventConnections>
         <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.WARM" dx1="135.0"/>
