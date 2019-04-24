@@ -55,19 +55,19 @@
       <ECTransition Comment="" Condition="REQ[InPosition_2&lt;&gt;TRUE]" Destination="Ready" Source="Ready" x="825.0" y="-150.0"/>
     </ECC>
     <Algorithm Comment="new algorithm" Name="Move_In_ALG">
-      <ST Text="STATE:=&quot;MOVE_IN&quot;;&#10;MouldAreaFree:=FALSE;&#10;EnableMovement:=1;&#10;"/>
+      <ST Text="STATE:='MOVE_IN';&#10;MouldAreaFree:=FALSE;&#10;EnableMovement:=1;&#10;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Move_Out_ALG">
-      <ST Text="STATE:=&quot;MOVE_OUT&quot;;&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=3;"/>
+      <ST Text="STATE:='MOVE_OUT';&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=3;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Grap_ALG">
-      <ST Text="STATE:=&quot;GRAP&quot;;&#10;MouldAreaFree:=FALSE;&#10;EnableMovement:=1;"/>
+      <ST Text="STATE:='GRAP';&#10;MouldAreaFree:=FALSE;&#10;EnableMovement:=1;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Release_ALG">
-      <ST Text="STATE:=&quot;Release&quot;;&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=3;"/>
+      <ST Text="STATE:='Release';&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=3;"/>
     </Algorithm>
     <Algorithm Comment="new algorithm" Name="Ready_ALG">
-      <ST Text="STATE:=&quot;Ready&quot;;&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=0;"/>
+      <ST Text="STATE:='Ready';&#10;MouldAreaFree:=TRUE;&#10;EnableMovement:=0;"/>
     </Algorithm>
   </BasicFB>
 </FBType>
