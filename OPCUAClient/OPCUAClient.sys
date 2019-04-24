@@ -18,9 +18,6 @@
         <Parameter Name="QI" Value="1"/>
         <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
       </FB>
-      <FB Comment="" Name="Modling" Type="MoldingMachine" x="4100.0" y="600.0">
-        <Parameter Name="MouldAreaFree" Value="FALSE"/>
-      </FB>
       <FB Comment="" Name="InPosition_1" Type="BOOL2BOOL" x="3200.0" y="1600.0"/>
       <FB Comment="" Name="SUBSCRIBE_1_2" Type="SUBSCRIBE_1" x="1300.0" y="2400.0">
         <Parameter Name="QI" Value="1"/>
@@ -31,57 +28,36 @@
         <Parameter Name="QI" Value="1"/>
         <Parameter Name="ID" Value="opc_ua[/Objects/1:Robot]"/>
       </FB>
-      <FB Comment="" Name="InPosition1" Type="BOOL2BOOL" x="5800.0" y="100.0"/>
-      <FB Comment="" Name="InPosition2" Type="BOOL2BOOL" x="5800.0" y="600.0"/>
-      <FB Comment="" Name="MoldingState" Type="STRING2STRING" x="5800.0" y="1100.0"/>
-      <FB Comment="" Name="MouldAreaFree" Type="BOOL2BOOL" x="5800.0" y="1800.0"/>
-      <FB Comment="" Name="State" Type="STRING2STRING" x="5800.0" y="2700.0"/>
       <FB Comment="" Name="E_RESTART_1" Type="E_RESTART" x="160.0" y="1595.0"/>
       <FB Comment="" Name="CLIENT_1" Type="CLIENT_1" x="1600.0" y="200.0">
         <Parameter Name="QI" Value="1"/>
       </FB>
       <FB Comment="" Name="RobotID" Type="WSTRING2WSTRING" x="0.0" y="600.0">
-        <Parameter Name="IN" Value="opc_ua[opc.tcp://localhost:4840#/Objects/1:Robot/MouldAreaFree/OUT]"/>
+        <Parameter Name="IN" Value="opc_ua[opc.tcp://localhost:4841#/Objects/1:Robot/MouldAreaFree/OUT]"/>
       </FB>
-      <FB Comment="" Name="EnableMovement" Type="INT2INT" x="5800.0" y="2300.0"/>
       <FB Comment="" Name="Robot" Type="Robot" x="4100.0" y="2000.0"/>
+      <FB Comment="" Name="Modling" Type="MoldingMachine" x="4100.0" y="600.0"/>
       <DataConnections>
         <Connection Comment="" Destination="InPosition_1.IN" Source="SUBSCRIBE_1_1.RD_1" dx1="85.0"/>
-        <Connection Comment="" Destination="Modling.MouldAreaFree" Source="MoldAreaFree.OUT" dx1="485.0"/>
         <Connection Comment="" Destination="InPosition_2.IN" Source="SUBSCRIBE_1_2.RD_1" dx1="315.0"/>
-        <Connection Comment="" Destination="MoldingState.IN" Source="Modling.STATE" dx1="500.0"/>
-        <Connection Comment="" Destination="InPosition1.IN" Source="Modling.InPosition_1" dx1="330.0"/>
-        <Connection Comment="" Destination="InPosition2.IN" Source="Modling.InPosition_2" dx1="330.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="InPosition1.OUT" dx1="485.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="MoldingState.OUT" dx1="430.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="InPosition2.OUT" dx1="485.0"/>
-        <Connection Comment="" Destination="PUBLISH_3_1.SD_2" Source="MouldAreaFree.OUT" dx1="535.0"/>
         <Connection Comment="" Destination="MoldAreaFree.IN" Source="CLIENT_1.RD_1" dx1="320.0"/>
         <Connection Comment="" Destination="RobotID.IN" Source="SUBSCRIBE_1.RD_1" dx1="85.0"/>
         <Connection Comment="" Destination="CLIENT_1.ID" Source="RobotID.OUT" dx1="315.0"/>
-        <Connection Comment="" Destination="PUBLISH_3_1.SD_3" Source="EnableMovement.OUT" dx1="535.0"/>
         <Connection Comment="" Destination="Robot.InPosition_1" Source="InPosition_1.OUT" dx1="310.0"/>
         <Connection Comment="" Destination="Robot.InPosition_2" Source="InPosition_2.OUT" dx1="210.0"/>
         <Connection Comment="" Destination="PUBLISH_3_1.SD_1" Source="Robot.STATE" dx1="450.0"/>
-        <Connection Comment="" Destination="MouldAreaFree.IN" Source="Robot.MouldAreaFree" dx1="480.0"/>
-        <Connection Comment="" Destination="EnableMovement.IN" Source="Robot.EnableMovement" dx1="300.0"/>
+        <Connection Comment="" Destination="Modling.MouldAreaFree" Source="MoldAreaFree.OUT" dx1="485.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="Modling.STATE" dx1="500.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="Modling.InPosition_1" dx1="1080.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="Modling.InPosition_2" dx1="330.0"/>
+        <Connection Comment="" Destination="PUBLISH_3_1.SD_2" Source="Robot.MouldAreaFree" dx1="1100.0"/>
+        <Connection Comment="" Destination="PUBLISH_3_1.SD_3" Source="Robot.EnableMovement" dx1="1100.0"/>
       </DataConnections>
       <EventConnections>
         <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.COLD" dx1="2600.0"/>
         <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.WARM" dx1="2600.0"/>
-        <Connection Comment="" Destination="Modling.REQ" Source="MoldAreaFree.CNF" dx1="485.0"/>
-        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD" dx1="1885.0"/>
-        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM" dx1="1885.0"/>
         <Connection Comment="" Destination="InPosition_1.REQ" Source="SUBSCRIBE_1_1.IND" dx1="85.0"/>
         <Connection Comment="" Destination="InPosition_2.REQ" Source="SUBSCRIBE_1_2.IND" dx1="315.0"/>
-        <Connection Comment="" Destination="InPosition1.REQ" Source="Modling.CNF" dx1="330.0"/>
-        <Connection Comment="" Destination="InPosition2.REQ" Source="Modling.CNF"/>
-        <Connection Comment="" Destination="MoldingState.REQ" Source="Modling.CNF" dx1="500.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.REQ" Source="InPosition1.CNF" dx1="110.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.REQ" Source="InPosition2.CNF" dx1="485.0"/>
-        <Connection Comment="" Destination="PUBLISH_3.REQ" Source="MoldingState.CNF" dx1="430.0"/>
-        <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="MouldAreaFree.CNF" dx1="535.0"/>
-        <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="State.CNF" dx1="525.0"/>
         <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART_1.COLD" dx1="330.0"/>
         <Connection Comment="" Destination="SUBSCRIBE_1_2.INIT" Source="E_RESTART_1.COLD" dx1="330.0"/>
         <Connection Comment="" Destination="PUBLISH_3_1.INIT" Source="E_RESTART_1.COLD" dx1="3380.0"/>
@@ -95,14 +71,15 @@
         <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.WARM" dx1="160.0"/>
         <Connection Comment="" Destination="CLIENT_1.REQ" Source="RobotID.CNF" dx1="415.0"/>
         <Connection Comment="" Destination="RobotID.REQ" Source="SUBSCRIBE_1.IND" dx1="170.0"/>
-        <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="EnableMovement.CNF" dx1="535.0"/>
         <Connection Comment="" Destination="Robot.REQ" Source="InPosition_1.CNF" dx1="310.0"/>
         <Connection Comment="" Destination="Robot.REQ" Source="InPosition_2.CNF" dx1="210.0"/>
         <Connection Comment="" Destination="Robot.REQ" Source="E_RESTART_1.COLD" dx1="1730.0"/>
         <Connection Comment="" Destination="Robot.REQ" Source="E_RESTART_1.WARM" dx1="1730.0"/>
-        <Connection Comment="" Destination="MouldAreaFree.REQ" Source="Robot.CNF" dx1="480.0"/>
-        <Connection Comment="" Destination="State.REQ" Source="Robot.CNF" dx1="450.0"/>
-        <Connection Comment="" Destination="EnableMovement.REQ" Source="Robot.CNF" dx1="500.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="MoldAreaFree.CNF" dx1="485.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD" dx1="1885.0"/>
+        <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM" dx1="1885.0"/>
+        <Connection Comment="" Destination="PUBLISH_3.REQ" Source="Modling.CNF" dx1="1080.0"/>
+        <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="Robot.CNF" dx1="1100.0"/>
       </EventConnections>
     </SubAppNetwork>
   </Application>
@@ -122,42 +99,25 @@
           <Parameter Name="QI" Value="1"/>
           <Parameter Name="ID" Value="opc_ua[/Objects/1:MoldMachine]"/>
         </FB>
-        <FB Comment="" Name="Modling" Type="MoldingMachine" x="4700.0" y="1400.0">
-          <Parameter Name="MouldAreaFree" Value="FALSE"/>
-        </FB>
-        <FB Comment="" Name="InPosition1" Type="BOOL2BOOL" x="5800.0" y="100.0"/>
-        <FB Comment="" Name="InPosition2" Type="BOOL2BOOL" x="5800.0" y="600.0"/>
-        <FB Comment="" Name="MoldingState" Type="STRING2STRING" x="5800.0" y="1100.0"/>
         <FB Comment="" Name="RobotID" Type="WSTRING2WSTRING" x="0.0" y="600.0">
-          <Parameter Name="IN" Value="opc_ua[opc.tcp://localhost:4840#/Objects/1:Robot/MouldAreaFree/OUT]"/>
+          <Parameter Name="IN" Value="opc_ua[opc.tcp://localhost:4841#/Objects/1:Robot/MouldAreaFree/OUT]"/>
         </FB>
         <FB Comment="" Name="CLIENT_1" Type="CLIENT_1" x="1600.0" y="200.0">
           <Parameter Name="QI" Value="1"/>
         </FB>
+        <FB Comment="" Name="Modling" Type="MoldingMachine" x="4100.0" y="600.0"/>
         <DataConnections>
-          <Connection Comment="" Destination="Modling.MouldAreaFree" Source="MoldAreaFree.OUT"/>
-          <Connection Comment="" Destination="InPosition1.IN" Source="Modling.InPosition_1"/>
-          <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="InPosition1.OUT"/>
-          <Connection Comment="" Destination="InPosition2.IN" Source="Modling.InPosition_2"/>
-          <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="InPosition2.OUT"/>
-          <Connection Comment="" Destination="MoldingState.IN" Source="Modling.STATE"/>
-          <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="MoldingState.OUT"/>
           <Connection Comment="" Destination="RobotID.IN" Source="SUBSCRIBE_1.RD_1"/>
           <Connection Comment="" Destination="CLIENT_1.ID" Source="RobotID.OUT"/>
           <Connection Comment="" Destination="MoldAreaFree.IN" Source="CLIENT_1.RD_1"/>
+          <Connection Comment="" Destination="Modling.MouldAreaFree" Source="MoldAreaFree.OUT"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_1" Source="Modling.STATE"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_2" Source="Modling.InPosition_1"/>
+          <Connection Comment="" Destination="PUBLISH_3.SD_3" Source="Modling.InPosition_2"/>
         </DataConnections>
         <EventConnections>
           <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.COLD"/>
           <Connection Comment="" Destination="PUBLISH_3.INIT" Source="E_RESTART.WARM"/>
-          <Connection Comment="" Destination="Modling.REQ" Source="MoldAreaFree.CNF"/>
-          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD"/>
-          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM"/>
-          <Connection Comment="" Destination="InPosition1.REQ" Source="Modling.CNF"/>
-          <Connection Comment="" Destination="PUBLISH_3.REQ" Source="InPosition1.CNF"/>
-          <Connection Comment="" Destination="InPosition2.REQ" Source="Modling.CNF"/>
-          <Connection Comment="" Destination="PUBLISH_3.REQ" Source="InPosition2.CNF"/>
-          <Connection Comment="" Destination="MoldingState.REQ" Source="Modling.CNF"/>
-          <Connection Comment="" Destination="PUBLISH_3.REQ" Source="MoldingState.CNF"/>
           <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.COLD"/>
           <Connection Comment="" Destination="SUBSCRIBE_1.INIT" Source="E_RESTART.WARM"/>
           <Connection Comment="" Destination="RobotID.REQ" Source="SUBSCRIBE_1.IND"/>
@@ -165,6 +125,10 @@
           <Connection Comment="" Destination="CLIENT_1.INIT" Source="E_RESTART.WARM"/>
           <Connection Comment="" Destination="CLIENT_1.REQ" Source="RobotID.CNF"/>
           <Connection Comment="" Destination="MoldAreaFree.REQ" Source="CLIENT_1.CNF"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="MoldAreaFree.CNF"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.COLD"/>
+          <Connection Comment="" Destination="Modling.REQ" Source="E_RESTART.WARM"/>
+          <Connection Comment="" Destination="PUBLISH_3.REQ" Source="Modling.CNF"/>
         </EventConnections>
       </FBNetwork>
     </Resource>
@@ -185,45 +149,35 @@
           <Parameter Name="ID" Value="opc_ua[/Objects/1:Robot]"/>
         </FB>
         <FB Comment="" Name="InPosition_2" Type="BOOL2BOOL" x="2400.0" y="2400.0"/>
-        <FB Comment="" Name="MouldAreaFree" Type="BOOL2BOOL" x="5800.0" y="1800.0"/>
-        <FB Comment="" Name="State" Type="STRING2STRING" x="5800.0" y="2700.0"/>
         <FB Comment="" Name="PUBLISH_3_1" Type="PUBLISH_3" x="7400.0" y="1900.0">
           <Parameter Name="QI" Value="1"/>
           <Parameter Name="ID" Value="opc_ua[/Objects/1:Robot]"/>
         </FB>
         <FB Comment="" Name="E_RESTART_1" Type="E_RESTART" x="160.0" y="1595.0"/>
-        <FB Comment="" Name="EnableMovement" Type="INT2INT" x="5800.0" y="2300.0"/>
         <FB Comment="" Name="Robot" Type="Robot" x="4100.0" y="2000.0"/>
         <DataConnections>
           <Connection Comment="" Destination="InPosition_1.IN" Source="SUBSCRIBE_1_1.RD_1"/>
           <Connection Comment="" Destination="InPosition_2.IN" Source="SUBSCRIBE_1_2.RD_1"/>
-          <Connection Comment="" Destination="PUBLISH_3_1.SD_2" Source="MouldAreaFree.OUT"/>
-          <Connection Comment="" Destination="PUBLISH_3_1.SD_3" Source="EnableMovement.OUT"/>
           <Connection Comment="" Destination="Robot.InPosition_1" Source="InPosition_1.OUT"/>
           <Connection Comment="" Destination="Robot.InPosition_2" Source="InPosition_2.OUT"/>
           <Connection Comment="" Destination="PUBLISH_3_1.SD_1" Source="Robot.STATE"/>
-          <Connection Comment="" Destination="MouldAreaFree.IN" Source="Robot.MouldAreaFree"/>
-          <Connection Comment="" Destination="EnableMovement.IN" Source="Robot.EnableMovement"/>
+          <Connection Comment="" Destination="PUBLISH_3_1.SD_2" Source="Robot.MouldAreaFree"/>
+          <Connection Comment="" Destination="PUBLISH_3_1.SD_3" Source="Robot.EnableMovement"/>
         </DataConnections>
         <EventConnections>
           <Connection Comment="" Destination="InPosition_1.REQ" Source="SUBSCRIBE_1_1.IND"/>
           <Connection Comment="" Destination="InPosition_2.REQ" Source="SUBSCRIBE_1_2.IND"/>
-          <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="MouldAreaFree.CNF"/>
-          <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="State.CNF"/>
           <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART_1.COLD"/>
           <Connection Comment="" Destination="SUBSCRIBE_1_2.INIT" Source="E_RESTART_1.COLD"/>
           <Connection Comment="" Destination="PUBLISH_3_1.INIT" Source="E_RESTART_1.COLD"/>
           <Connection Comment="" Destination="SUBSCRIBE_1_1.INIT" Source="E_RESTART_1.WARM"/>
           <Connection Comment="" Destination="SUBSCRIBE_1_2.INIT" Source="E_RESTART_1.WARM"/>
           <Connection Comment="" Destination="PUBLISH_3_1.INIT" Source="E_RESTART_1.WARM"/>
-          <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="EnableMovement.CNF"/>
           <Connection Comment="" Destination="Robot.REQ" Source="InPosition_1.CNF"/>
           <Connection Comment="" Destination="Robot.REQ" Source="InPosition_2.CNF"/>
           <Connection Comment="" Destination="Robot.REQ" Source="E_RESTART_1.COLD"/>
           <Connection Comment="" Destination="Robot.REQ" Source="E_RESTART_1.WARM"/>
-          <Connection Comment="" Destination="MouldAreaFree.REQ" Source="Robot.CNF"/>
-          <Connection Comment="" Destination="State.REQ" Source="Robot.CNF"/>
-          <Connection Comment="" Destination="EnableMovement.REQ" Source="Robot.CNF"/>
+          <Connection Comment="" Destination="PUBLISH_3_1.REQ" Source="Robot.CNF"/>
         </EventConnections>
       </FBNetwork>
     </Resource>
@@ -232,22 +186,16 @@
   <Mapping From="OPCUAClientApp.SUBSCRIBE_1" To="Moulding.EMB_RES.SUBSCRIBE_1"/>
   <Mapping From="OPCUAClientApp.MoldAreaFree" To="Moulding.EMB_RES.MoldAreaFree"/>
   <Mapping From="OPCUAClientApp.PUBLISH_3" To="Moulding.EMB_RES.PUBLISH_3"/>
-  <Mapping From="OPCUAClientApp.Modling" To="Moulding.EMB_RES.Modling"/>
-  <Mapping From="OPCUAClientApp.InPosition1" To="Moulding.EMB_RES.InPosition1"/>
-  <Mapping From="OPCUAClientApp.InPosition2" To="Moulding.EMB_RES.InPosition2"/>
-  <Mapping From="OPCUAClientApp.MoldingState" To="Moulding.EMB_RES.MoldingState"/>
   <Mapping From="OPCUAClientApp.SUBSCRIBE_1_1" To="Rbobt.EMB_RES.SUBSCRIBE_1_1"/>
   <Mapping From="OPCUAClientApp.InPosition_1" To="Rbobt.EMB_RES.InPosition_1"/>
   <Mapping From="OPCUAClientApp.SUBSCRIBE_1_2" To="Rbobt.EMB_RES.SUBSCRIBE_1_2"/>
   <Mapping From="OPCUAClientApp.InPosition_2" To="Rbobt.EMB_RES.InPosition_2"/>
-  <Mapping From="OPCUAClientApp.MouldAreaFree" To="Rbobt.EMB_RES.MouldAreaFree"/>
-  <Mapping From="OPCUAClientApp.State" To="Rbobt.EMB_RES.State"/>
   <Mapping From="OPCUAClientApp.PUBLISH_3_1" To="Rbobt.EMB_RES.PUBLISH_3_1"/>
   <Mapping From="OPCUAClientApp.E_RESTART_1" To="Rbobt.EMB_RES.E_RESTART_1"/>
   <Mapping From="OPCUAClientApp.RobotID" To="Moulding.EMB_RES.RobotID"/>
   <Mapping From="OPCUAClientApp.CLIENT_1" To="Moulding.EMB_RES.CLIENT_1"/>
-  <Mapping From="OPCUAClientApp.EnableMovement" To="Rbobt.EMB_RES.EnableMovement"/>
   <Mapping From="OPCUAClientApp.Robot" To="Rbobt.EMB_RES.Robot"/>
+  <Mapping From="OPCUAClientApp.Modling" To="Moulding.EMB_RES.Modling"/>
   <Segment Comment="" Name="Ethernet" Type="Ethernet" dx1="1500.0" x="3200.0" y="600.0">
     <Attribute Comment="color" Name="Color" Type="STRING" Value="166,116,205"/>
   </Segment>

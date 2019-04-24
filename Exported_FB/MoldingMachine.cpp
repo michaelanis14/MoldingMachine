@@ -48,10 +48,7 @@ const SInternalVarsInformation FORTE_MoldingMachine::scm_stInternalVars = {1, sc
 
 
 void FORTE_MoldingMachine::setInitialValues(){
-  MouldAreaFree() = false;
-  STATE() = "FALSE";
-  InPosition_1() = false;
-  InPosition_2() = false;
+  MouldAreaFree() = true;
 }
 
 void FORTE_MoldingMachine::alg_Molding(void){
@@ -113,7 +110,7 @@ void FORTE_MoldingMachine::executeEvent(int pa_nEIID){
     bTransitionCleared = true;
     switch(m_nECCState){
       case scm_nStateSTART:
-        if((scm_nEventREQID == pa_nEIID) && ((MouldAreaFree())))
+        if(1)
           enterStateClosing();
         else
           bTransitionCleared  = false; //no transition cleared
